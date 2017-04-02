@@ -1,0 +1,12 @@
+<h1>{{name}}</h1>
+<hr>
+This is the first component!
+<my-second></my-second>
+<br />
+
+<h2>Services Demo</h2>
+<ul>
+   <li *ngFor="let item of countries; let myIndex = index">
+    	{{countries[myIndex].name | reverseStr | uppercase}}
+   </li>
+</ul>
