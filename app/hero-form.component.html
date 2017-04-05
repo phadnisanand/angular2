@@ -1,10 +1,40 @@
-<h1>List Persons</h1>
+<!--<h1>List Persons</h1>
 <ul>
    <li *ngFor="let item of data; let myIndex = index">
     	{{data[myIndex].name}}  
     	{{data[myIndex].phone}}
    </li>
+</ul>-->
+<!-- All Articles -->
+
+<h1>List Persons</h1>
+<ul>
+   <li *ngFor="let item of data; let myIndex = index">
+    	{{data[myIndex].title}}   <a (click)="editData('/'+ data[myIndex].nid)">Edit</a> <a (click)="deleteData('/'+ data[myIndex].nid)">Delete</a>
+   </li>
 </ul>
+
+<input type="button"  value="Show data"  (click)="updateData()"/>
+
+
+
+<!-- Single user -->
+<!--
+<ul>
+   <li *ngFor="let item of data; let myIndex = index">
+    	{{data[myIndex].uid[myIndex].value}}  - {{data[myIndex].name[myIndex].value}}  - {{data[myIndex].mail[myIndex].value}} 
+   </li>
+</ul>
+-->
+
+<!-- Single Article -->
+<!--
+<ul>
+   <li *ngFor="let item of data; let myIndex = index">
+    	{{data[myIndex].nid[myIndex].value}}  - {{data[myIndex].title[myIndex].value}}  - {{data[myIndex].body[myIndex].value}} 
+   </li>
+</ul>
+-->
 
 
  
