@@ -14,16 +14,15 @@ export class HeroFormComponent {
   data;
 
   getAllArticlesData()
-  {
+  {  // get All articles
 
          this.http.get('http://localhost:8888/drupal-8.2.7/articles')
                 .subscribe(res => this.data = res.json()); 
-          /*this.http.get('http://localhost:3000/app/people.json')
-                .subscribe(res => this.data = res.json()); */
+
   }
 
   getSingleUser()
-  {
+  { // get Single node
                        
         let headers = new Headers();
         this.createAuthorizationHeader(headers);
@@ -36,10 +35,10 @@ export class HeroFormComponent {
   }
 
   getSingleNode()
-  {
+  {   // get Single node
 
         let headers = new Headers();
-         this.http.get('http://localhost:8888/drupal-8.2.7/node/7?_format=json', {
+         this.http.get('http://localhost:8888/drupal-8.2.7/node/11?_format=json', {
           headers: headers
         })
         .subscribe(res => this.data =  [res.json()]);
@@ -47,7 +46,7 @@ export class HeroFormComponent {
 
   }
   createData()
-  {
+  {  // Create request
          let headers = new Headers();
          headers.append('Content-Type', "application/json; charset=utf8"); 
          this.createAuthorizationHeader(headers);
@@ -65,36 +64,38 @@ export class HeroFormComponent {
   }
   
   updateData()
-  {
+  {  // patch request
 
          let headers = new Headers();
-         headers.append('Content-Type', "application/json; charset=utf8"); 
+         headers.append('Content-Type', "application/json"); 
+         headers.append('Accept', "application/json");  
          this.createAuthorizationHeader(headers);
          let body;
-           body={
-            "title":[{"value":"Hello Anand"}]
+         body={
+            "type":[{"target_id":"article"}],
+            "title":[{"value":"Hello bbbb"}],
+            "body":[{"value":"How are you?"}]
           };
+
           this.http.patch(
-          'http://localhost:8888/drupal-8.2.7/entity/node/10', JSON.stringify(body), {
+          'http://localhost:8888/drupal-8.2.7/node/10?_format=json',  body, {
             headers: headers
-          }).subscribe(); 
-
-
+          }).subscribe();  
   }
 
  deleteData(id: number)
- {
+ {  // delete request
      
     let headers = new Headers();
     this.createAuthorizationHeader(headers);
-   return this.http.delete('http://localhost:8888/drupal-8.2.7/node'+ id, {
+    return this.http.delete('http://localhost:8888/drupal-8.2.7/node'+ id, {
         headers: headers,
-   }).subscribe(); 
+    }).subscribe(); 
 	
  }
 
  editData(id: number)
- {
+ {  // Edit request
 
 	   this.http.get('http://localhost:8888/drupal-8.2.7/articles'+ id)
                 .subscribe(res => this.data = res.json()); 
